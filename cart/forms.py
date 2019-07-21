@@ -2,7 +2,7 @@ from django import forms
 
 
 PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
-SIZE_CHOICES = [(j, str(j)) for j in ['XS','S','M','L','XL','XXL']]
+SIZE_CHOICES = [(j, str(j)) for j in range(3,12)]
 COLOR_CHOICES = [(k, str(k)) for k in ['Green','Blue','Red','Orange','Yellow','Black','White']]
 
 class CartAddProductForm(forms.Form):
