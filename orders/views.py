@@ -43,7 +43,7 @@ def order_create(request):
 
     else:
         form = OrderCreateForm()
-    return render(request, 'orders/order/create.html', {'cart': cart, 'form': form, 'categories':categories})
+    return render(request, 'orders\order\create.html', {'cart': cart, 'form': form, 'categories':categories})
 
 @staff_member_required
 def admin_order_detail(request, order_id):
@@ -56,13 +56,13 @@ def order_created(request, order_id):
     email_success = 'false'
    #Task to send an e-mail notification when an order is successfully created.
     order = Order.objects.get(id=order_id)
-    subject = 'V5 store order summary for Order nr. {}'.format(order.id)
+    subject = 'Hoof Edge store order summary for Order nr. {}'.format(order.id)
     message = 'Dear {},\n\nYou have successfully placed an order.Your order id is {}.'.format(order.first_name,order.id)
     to_email_id = [order.email]
     context = {'order': order}
     #orderpdf =generate_order_pdf(request,order_id)
     orderFileName = 'OrderSummary_' + str(order_id) + '.pdf'
-    msg = EmailMessage(subject, message, from_email="v5storein@gmail.com", to=[to_email_id])
+    msg = EmailMessage(subject, message, from_email="divyakorrapati90@gmail.com", to=[to_email_id])
     #msg.attach(orderFileName, orderpdf, 'application/pdf')
     msg.content_subtype = "html"
     msg.send()

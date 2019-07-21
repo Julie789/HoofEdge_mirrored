@@ -6,7 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 
 
 
-SIZE_CHOICES = [(j, str(j)) for j in ['XS','S','M','L','XL','XXL']]
+SIZE_CHOICES = [(j, int(j)) for j in [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]]
 COLOR_CHOICES = [(k, str(k)) for k in ['Green','Blue','Red','Orange','Yellow','Black','White']]
 
 #COLOR_CHOICES = (
