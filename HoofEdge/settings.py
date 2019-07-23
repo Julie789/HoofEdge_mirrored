@@ -165,14 +165,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'divyakorrapati90@gmail.com'
-EMAIL_HOST_PASSWORD = 'ksuvarna222'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@sandbox0b4c8a293ae84cf381195c41412d73ea.mailgun.org'
+EMAIL_HOST_PASSWORD = 'feb432f639cfccc693bad5390f5df320-c50f4a19-fa8a4249'
 #EMAIL_PORT = 2525
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
+#EMAIL_USE_TLS = True
+#DEFAULT_FROM_EMAIL = 'divyakorrapati90@gmail.com'
 
 try:
     from .local_settings import *
