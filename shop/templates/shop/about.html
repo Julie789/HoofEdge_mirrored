@@ -7,44 +7,47 @@
 <html>
 {% block content %}
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+body, html {
+    height: 100%;
+}
+h1, h2, h3, h4 {
+    font-family: 'Lobster', cursive;
+}
+.parallax {
+    /* The image used */
 
-body {
-  font-family: Arial;
-  font-size: 17px;
+
+
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.container {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.container img {vertical-align: middle;}
-
-.container .content {
-  position: absolute;
-  bottom: 0;
-  background: rgb(0, 0, 0); /* Fallback color */
-  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-  color: #f1f1f1;
-  width: 100%;
-  padding: 20px;
+/* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */
+@media only screen and (max-device-width: 1366px) {
+    .parallax {
+        background-attachment: scroll;
+    }
 }
 </style>
 </head>
 <body>
 
-<h2>Help Us get you a fashionable look ever!!</h2>
+<h2><p align="center" style="padding: 20px">If your are in love with your foot look, Yes you are in the right place!!</p></h2>
+ <h2><p align="center " style="padding: 20px" >   HoofEdge helps you select the desired shoe.HoofEdge, Inc. is one of the nation’s premier retailers started in 2017. Hoof Edge, Inc. operates stores in 44 states, the District of Columbia, Guam and Puerto Rico. </p></h2>
+    <h2><p align="center " style="padding: 20px"> Hoof Edge, Inc. has corporate offices in Omaha.</p></h2>
 
-<div class="container">
-  <img src={% static 'img/shoes.jpg' %} alt="apparel" style="width:100%;">
-  <div class="content">
-    <h1>HoofEdge</h1>
-    <p>If your are in love with your foot look, Yes you are in the right place!!HoofEdge helps you select the desired shoe.HoofEdge, Inc. is one of the nation’s premier retailers started in 2017. Hoof Edge, Inc. operates stores in 44 states, the District of Columbia, Guam and Puerto Rico. Hoof Edge, Inc. has corporate offices in Omaha.</p>
-  </div>
-</div>
+
+
+
+<div class="parallax"></div>
 
 </body>
 {% endblock %}
