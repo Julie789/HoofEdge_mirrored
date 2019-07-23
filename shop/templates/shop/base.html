@@ -3,19 +3,96 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title><h3>{% block title %}Hoof Edge</h3>{% endblock %}</title>
+  <title>{% block title %}Hoof Edge{% endblock %}</title>
   <link href="{% static "css/base.css" %}" rel="stylesheet">
  <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
-</head>
-<body>
-  <div id="subheader">
-  <ul id="ul li">
-      <li><a class="navbar-brand"  href="{% url "shop:product_list" %}"><img width="50px" src="{% static 'img/V5Logo.png' %}"> </a> <span><a class="logo" href="{% url "shop:product_list" %}">V5 Clothing</a></span></li>
 
-           <li> <form action="" method="GET" accept-charset="utf-8">
-		<input name="q" type="text" placeholder="Search Products" style="width: 500px "  value= "{{ request.GET.q }}" id="search_prod"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+            height: 75px;
+        }
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {
+            height: 450px
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            padding-top: 20px;
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+
+            .row.content {
+                height: auto;
+            }
+        }
+    </style>
+
+
+
+
+</head>
+<body id="app-layout">
+<nav class="navbar navbar-inverse">
+ <div class="container-fluid">
+        <div class="navbar-header">
+
+            <!-- Collapsed Hamburger -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#myNavbar">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Branding Image -->
+            <a class="navbar-brand" href="/">
+                HoofEdge
+            </a>
+        </div>
+
+  <div class="collapse navbar-collapse" id="myNavbar">
+  <ul class="nav navbar-nav">
+      <li><a class="navbar-brand"  href="{% url "shop:product_list" %}"><img width="75px" height="60px" src="{% static 'img/HoofEdge.png' %}"> </a> <!-- <span><a class="logo" href="{% url "shop:product_list" %}">HoofEdge</a></span> --></li>
+
+      <li><a href="{% url "shop:product_list" %}">Home</a></li>
+      <li><a href="{% url "shop:about" %}">About Us</a></li>
+      <li><a href="{% url "shop:contact" %}">Contact Us</a></li>
+      <li><a href="{% url "shop:product_list" %}">Special Deals</a></li>
+
+  </ul>
+  <ul class="nav navbar-nav">
+
+		<input name="q" type="text" placeholder="Search Products" style="width: 150px "  value= "{{ request.GET.q }}" id="search_prod"/>
 			<input type="submit"  value="Search" class="btn" />
 	</form></li>
+  </ul>
+   <ul class="nav navbar-nav navbar-right">
+
     <li><div class="cart">
       {% with total_items=cart|length %}
           {% if cart|length > 0 %}
@@ -27,6 +104,7 @@
           {% else %}
             <img alt="Your cart" width="25" height="25" src="{% static 'img/cart.png' %}">
           {% endif %}</div></li>
+
          <li>
                 {% if user.is_authenticated %}
                     <li class="dropdown">
@@ -40,28 +118,30 @@
                     <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     <li><a href="{% url 'shop:register' %}"><i class="glyphicon glyphicon-log-in"></i>SignUp</a></li>
                 {% endif %}
-         {% endwith %} </ul>
-          <ul id="ul li2" >
-          <li2 {% if not category %}class="selected"{% endif %}>
-        <a href="{% url "shop:product_list" %}">Home</a>
-    </li2>
+         {% endwith %}
+  </ul>
+  </div>
 
-      {% for c in categories %}
+
+
+<!--
+    {% for c in categories %}
         <li2 {% if category.slug == c.slug %}class="selected"{% endif %}>
           <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
         </li2>
-      {% endfor %}
-   <li2><a href="{% url "shop:about" %}">About Us</a></li2>
-               <li2><a href="{% url "shop:contact" %}">Contact Us</a></li2>
-                <li2><a href="{% url "shop:product_list" %}">Special Deals</a></li2>
-      </li2>
-    </ul>
+      {% endfor %} -->
+
+
+
     </div>
+</nav>
   <div id="content">
     {% block content %}
 
     {% endblock %}
   </div>
    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.js' %}"></script>
+
 </body>
 </html>
+
