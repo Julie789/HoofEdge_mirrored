@@ -92,7 +92,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated '\
+                    return HttpResponse('Authenticated '
                                         'successfully')
                 else:
                     return HttpResponse('Disabled account')
@@ -105,6 +105,10 @@ def user_login(request):
 
 def about(request):
  return render(request,'shop/about.html',{})
+
+def deals(request):
+ return render(request,'shop/deals.html',{})
+
 
 
 def contact(request):
