@@ -77,12 +77,12 @@
 
   <div class="collapse navbar-collapse" id="myNavbar">
   <ul class="nav navbar-nav">
-      <li style="padding-left: 50px"><a class="navbar-brand"  href="{% url "shop:product_list" %}"><img width="75px" height="60px" src="{% static 'img/HoofEdge.png' %}"> </a> <!-- <span><a class="logo" href="{% url "shop:product_list" %}">HoofEdge</a></span> --></li>
+      <li style="padding-left: 50px"><a class="navbar-brand"  href="{% url "shop:product_list" %}"><img width="75px" height="60px" src="https://i.ibb.co/Rj2c2gf/Hoof-Edge5.png"> </a> <!-- <span><a class="logo" href="{% url "shop:product_list" %}">HoofEdge</a></span> --></li>
 
       <li><a href="{% url "shop:product_list" %}">Home</a></li>
       <li><a href="{% url "shop:about" %}">About Us</a></li>
       <li><a href="{% url "shop:contact" %}">Contact Us</a></li>
-      <li><a href="{% url "shop:product_list" %}">Special Deals</a></li>
+      <li><a href="{% url "shop:deals" %}">Special Deals</a></li>
 
   </ul>
   <ul class="nav navbar-nav">
@@ -132,12 +132,7 @@
 
 
 
-<!--
-    {% for c in categories %}
-        <li2 {% if category.slug == c.slug %}class="selected"{% endif %}>
-          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-        </li2>
-      {% endfor %} -->
+
 
 
 

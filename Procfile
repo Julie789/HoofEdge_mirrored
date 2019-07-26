@@ -1,1 +1,1 @@
-web: gunicorn myshop.wsgi --log-file -
+web: gunicorn HoofEdge.wsgi --log-file -

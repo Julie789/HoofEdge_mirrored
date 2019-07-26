@@ -14,6 +14,7 @@ import os
 #import django_heroku
 import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -87,10 +88,10 @@ WSGI_APPLICATION = 'HoofEdge.wsgi.application'
 DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd502tva6vm7jr7',
-        'USER': 'klvsvbcylupzmd',
-        'PASSWORD': '2d51299dcc3922f5606d942c8dba4be56e3566c8960f401904c8e547bd5d19e1',
-        'HOST': 'ec2-107-20-193-206.compute-1.amazonaws.com',
+        'NAME': 'd3tsvcqell0qve',
+        'USER': 'sfxsrzmkzpeayf',
+        'PASSWORD': 'e8484fe07298b6b88beed62fbeb336cf06e3d5e3356a9d07730e1119b6f3c727',
+        'HOST': 'ec2-54-243-193-59.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -145,7 +146,7 @@ LOGOUT_REDIRECT_URL = '/'
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
+
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -166,12 +167,18 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_HOST_USER = 'postmaster@sandbox0b4c8a293ae84cf381195c41412d73ea.mailgun.org'
-EMAIL_HOST_PASSWORD = 'feb432f639cfccc693bad5390f5df320-c50f4a19-fa8a4249'
+EMAIL_HOST_USER = 'postmaster@sandboxbc6ddeaf638c44eb915500e924de4a02.mailgun.org'
+EMAIL_HOST_PASSWORD = '5a9edaff00bfe896fc3f9a5ea720c89c-c50f4a19-fe83f5b2'
 #EMAIL_PORT = 2525
 EMAIL_PORT = 587
 #EMAIL_USE_TLS = True
 #DEFAULT_FROM_EMAIL = 'divyakorrapati90@gmail.com'
+
+#EMAIL_HOST = 'smtp.mailtrap.io'
+#EMAIL_HOST_USER = '73fe1d5b7d5fc4'
+#EMAIL_HOST_PASSWORD = 'd75fe342548e4c'
+#EMAIL_PORT = '2525'
+#DEFAULT_FROM_EMAIL = '8380emailreset@gmail.com'
 
 try:
     from .local_settings import *

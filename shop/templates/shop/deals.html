@@ -1,0 +1,53 @@
+
+<div class="nav">
+    {% extends "shop/base.html" %}
+</div>
+{% load static %}
+<!DOCTYPE html>
+<html>
+{% block content %}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+    height: 100%;
+}
+h1, h2, h3, h4 {
+    font-family: 'Lobster', cursive;
+}
+.parallax {
+    /* The image used */
+
+
+
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */
+@media only screen and (max-device-width: 1366px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}
+</style>
+</head>
+<body>
+
+<h2><p align="center" style="padding: 20px">GREAT ONLINE DEALS!!</p></h2>
+ <h2><p align="center " style="padding: 20px" > COMING SOON!!</p></h2>
+
+
+
+
+<div class="parallax"></div>
+
+</body>
+{% endblock %}
+</html>
