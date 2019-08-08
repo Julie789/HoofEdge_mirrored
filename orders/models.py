@@ -6,7 +6,7 @@ from django.core.validators import MinValueValidator, \
                                     MaxValueValidator
 
 from coupons.models import Coupon
-
+from currency_converter import CurrencyConverter
 
 class Order(models.Model):
     first_name = models.CharField(max_length=50)
@@ -15,6 +15,7 @@ class Order(models.Model):
     address = models.CharField(max_length=250)
     postal_code = models.CharField(max_length=20)
     city = models.CharField(max_length=100)
+    cell_phone = models.CharField(max_length=50, default='9999999999')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
@@ -37,6 +38,10 @@ class Order(models.Model):
         return total_cost - total_cost * \
                (self.discount / Decimal('100'))
 
+    def get_total_currency_cost(self):
+        c= CurrencyConverter()
+        totalcurrency = c.convert(float(self.get_total_cost(),'USD','EUR'))
+        return round(totalcurrency,2)
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order,

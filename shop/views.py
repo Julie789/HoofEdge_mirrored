@@ -9,6 +9,9 @@ from .forms import CommentForm
 from cart.forms import CartAddProductForm
 #from .recommender import Recommender
 from django.db.models import Q
+from watson_developer_cloud import LanguageTranslatorV3
+import json
+import requests
 
 
 def register(request):
@@ -46,6 +49,11 @@ def product_list(request, category_slug=None):
                    'categories': categories,
                    'products': products})
 
+language_translator = LanguageTranslatorV3(
+        version='2018-05-01',
+        iam_apikey='18xh1l5OsHajGyhrF5GSw6XaKyS69XrgrCVh5DmJXo0O',
+        #url='https://gateway.watsonplatform.net/language-translator/api'
+    )
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product,
@@ -54,6 +62,18 @@ def product_detail(request, id, slug):
                                 available=True)
 
     cart_product_form = CartAddProductForm()
+
+    translation = language_translator.translate(
+        text=product.description,model_id='en-es').get_result()
+
+    obj=(json.dumps(translation, indent=2, ensure_ascii=False))
+    print(obj)
+    obj2 = json.loads(obj)
+    product.obj2=obj2['translations'][0]['translation']
+
+
+
+
 
     # List of active comments for this post
     comments = product.comments.filter(active=True)
@@ -92,7 +112,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated '
+                    return HttpResponse('Authenticated '\
                                         'successfully')
                 else:
                     return HttpResponse('Disabled account')
@@ -108,7 +128,6 @@ def about(request):
 
 def deals(request):
  return render(request,'shop/deals.html',{})
-
 
 
 def contact(request):

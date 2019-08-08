@@ -14,6 +14,8 @@ from .utils import render_to_pdf
 from django.contrib.auth.decorators import login_required
 from shop.models import Category
 from django.core.mail import send_mail, EmailMessage
+from HoofEdge.settings import client
+from twilio.base.exceptions import TwilioRestException
 
 
 def order_create(request):
@@ -57,7 +59,7 @@ def order_created(request, order_id):
    #Task to send an e-mail notification when an order is successfully created.
     order = Order.objects.get(id=order_id)
     subject = 'Hoof Edge store order summary for Order nr. {}'.format(order.id)
-    message = 'Dear {},\n\nYou have successfully placed an order.Your order id is {}.'.format(order.first_name,order.id)
+    message = 'Thankyou {},\n\nYour order {} has been placed successfully and will be delivered to {} {} {}.'.format(order.first_name,order.id,order.address,order.city,order.postal_code)
     to_email_id = [order.email]
     context = {'order': order}
     #orderpdf =generate_order_pdf(request,order_id)
@@ -67,6 +69,15 @@ def order_created(request, order_id):
     msg.content_subtype = "html"
     msg.send()
     email_success = 'true'
+
+    #for twillo
+    try:
+        client.messages.create(body=message, from_='+15312018340', to=[order.cell_phone])
+    except TwilioRestException:
+        print('Phone number not registered')
+
+    #print(message.sid)
+
     return render(request, 'orders/order/pdf.html', {'order': order,
                                                      'email_success': email_success})
 @login_required

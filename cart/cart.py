@@ -2,7 +2,7 @@ from decimal import Decimal
 from django.conf import settings
 from shop.models import Product
 from coupons.models import Coupon
-
+from currency_converter import CurrencyConverter
 
 class Cart(object):
 
@@ -85,6 +85,7 @@ class Cart(object):
     def get_total_price(self):
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
+
     def clear(self):
         # remove cart from session
         del self.session[settings.CART_SESSION_ID]
@@ -104,3 +105,4 @@ class Cart(object):
 
     def get_total_price_after_discount(self):
         return self.get_total_price() - self.get_discount()
+
