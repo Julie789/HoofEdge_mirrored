@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.urls import reverse
 from django.contrib.contenttypes.models import ContentType
+from currency_converter import CurrencyConverter
 
 
 
@@ -72,6 +73,10 @@ class Product(models.Model):
             return reverse('shop:product_detail',
                            args=[self.id, self.slug])
 
+    def currency_price(self):
+        c= CurrencyConverter()
+        currency = c.convert(float(self.price),'USD','EUR')
+        return round(currency, 2)
 
 class Comment(models.Model):
     post = models.ForeignKey(Product,on_delete=models.CASCADE, related_name='comments')

@@ -14,7 +14,6 @@ import os
 #import django_heroku
 import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -48,6 +47,7 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'coupons.apps.CouponsConfig',
     'star_ratings',
+    'social_django',
 ]
 
 
@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    #'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'HoofEdge.urls'
@@ -77,6 +77,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.context_processors.cart',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+
             ],
         },
     },
@@ -88,10 +91,10 @@ WSGI_APPLICATION = 'HoofEdge.wsgi.application'
 DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd3tsvcqell0qve',
-        'USER': 'sfxsrzmkzpeayf',
-        'PASSWORD': 'e8484fe07298b6b88beed62fbeb336cf06e3d5e3356a9d07730e1119b6f3c727',
-        'HOST': 'ec2-54-243-193-59.compute-1.amazonaws.com',
+        'NAME': 'd6bbf4t3bhdkdd',
+        'USER': 'kchmoffqovobgk',
+        'PASSWORD': 'f29cb4481215aea87d8c89bdad182a967c7b87735ce0546fccf50d7b7b50f884',
+        'HOST': 'ec2-174-129-226-234.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -118,6 +121,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+##authentication backends
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
@@ -140,13 +149,15 @@ CART_SESSION_ID = 'cart'
 
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-
+#STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -174,12 +185,6 @@ EMAIL_PORT = 587
 #EMAIL_USE_TLS = True
 #DEFAULT_FROM_EMAIL = 'divyakorrapati90@gmail.com'
 
-#EMAIL_HOST = 'smtp.mailtrap.io'
-#EMAIL_HOST_USER = '73fe1d5b7d5fc4'
-#EMAIL_HOST_PASSWORD = 'd75fe342548e4c'
-#EMAIL_PORT = '2525'
-#DEFAULT_FROM_EMAIL = '8380emailreset@gmail.com'
-
 try:
     from .local_settings import *
 except ImportError:
@@ -200,6 +205,23 @@ Configuration.configure(
     BRAINTREE_PRIVATE_KEY
 )
 
+import os
+import sys
+from twilio.rest import Client
+
+TWILIO_ACCOUNT_SID = 'ACd5f5b31ba23cc6ea6b440fef9484747b'
+TWILIO_AUTH_TOKEN = '95e661f7b2303fe50f0f08c6d4bc3ea1'
+
+#account_sid = os.getenv['TWILIO_ACCOUNT_SID']
+#auth_token = os.environ[TWILIO_AUTH_TOKEN]
+client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+
 #REDIS_HOST = 'localhost'
 #REDIS_PORT = 6379
 #REDIS_DB = 1
+
+##SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'AIzaSyCbtMRLsxyHsjAgk7kwD2pgQ6jT8cktxV8'
+SOCIAL_AUTH_FACEBOOK_KEY = '344132709804760' ##APP ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'b978a64c0fa8e7762bffdfdc8e922641' ##APP Secret
+
+

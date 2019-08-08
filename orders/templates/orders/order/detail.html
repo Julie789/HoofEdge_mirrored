@@ -36,6 +36,10 @@
     <td><a href="mailto:{{ order.email }}">{{ order.email }}</a></td>
   </tr>
   <tr>
+    <th>Phone</th>
+    <td><a href="sms:{{ order.cell_phone }}">{{ order.cell_phone }}</a></td>
+  </tr>
+  <tr>
     <th>Address</th>
     <td>{{ order.address }}, {{ order.postal_code }} {{ order.city }}</td>
   </tr>
@@ -71,7 +75,7 @@
           </tr>
         {% endfor %}
         <tr class="total">
-          <td colspan="3">Total</td>
+          <td colspan="3">Total in Dollars</td>
           <td class="num">${{ order.get_total_cost }}</td>
         </tr>
       </tbody>

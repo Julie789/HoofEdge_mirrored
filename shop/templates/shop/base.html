@@ -132,7 +132,12 @@
 
 
 
-
+<!--
+    {% for c in categories %}
+        <li2 {% if category.slug == c.slug %}class="selected"{% endif %}>
+          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li2>
+      {% endfor %} -->
 
 
 

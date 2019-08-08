@@ -60,7 +60,7 @@
           </td>
           <td colspan="7"></td>
           <td class="num neg">
-            - ${{ cart.get_discount|floatformat:"2" }}
+            - {{ cart.get_discount|floatformat:"2" }}
           </td>
         </tr>
       {% endif %}
@@ -69,7 +69,7 @@
         <td colspan="7"></td>
         <td class="num">
           ${{ cart.get_total_price_after_discount|floatformat:"2" }}
-        </td>
+         </td>
       </tr>
     </tbody>
   </table>

@@ -244,6 +244,7 @@ ul.errorlist {
 .product-list .item img {
     width:100%;
     margin-bottom:8px;
+    height:50%;
 }
 
 .product-detail {
