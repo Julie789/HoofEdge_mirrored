@@ -178,22 +178,16 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_HOST_USER = 'postmaster@sandboxbc6ddeaf638c44eb915500e924de4a02.mailgun.org'
-EMAIL_HOST_PASSWORD = '5a9edaff00bfe896fc3f9a5ea720c89c-c50f4a19-fe83f5b2'
-#EMAIL_PORT = 2525
+EMAIL_HOST_USER = 'user id'
+EMAIL_HOST_PASSWORD = 'password go here'
 EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
-#DEFAULT_FROM_EMAIL = 'divyakorrapati90@gmail.com'
+
 
 try:
     from .local_settings import *
 except ImportError:
     print('Import Error')
 
-# Braintree settings
-BRAINTREE_MERCHANT_ID = 'm2f4z4nc66t2sjcx'
-BRAINTREE_PUBLIC_KEY = '7kb3cs9tskxvw9y3'
-BRAINTREE_PRIVATE_KEY = '1611f4052d262ac8231a9b4d205f1733'
 
 from braintree import Configuration, Environment
 
@@ -209,8 +203,6 @@ import os
 import sys
 from twilio.rest import Client
 
-TWILIO_ACCOUNT_SID = 'ACd5f5b31ba23cc6ea6b440fef9484747b'
-TWILIO_AUTH_TOKEN = '95e661f7b2303fe50f0f08c6d4bc3ea1'
 
 #account_sid = os.getenv['TWILIO_ACCOUNT_SID']
 #auth_token = os.environ[TWILIO_AUTH_TOKEN]
@@ -220,8 +212,6 @@ client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 #REDIS_PORT = 6379
 #REDIS_DB = 1
 
-##SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'AIzaSyCbtMRLsxyHsjAgk7kwD2pgQ6jT8cktxV8'
-SOCIAL_AUTH_FACEBOOK_KEY = '344132709804760' ##APP ID
-SOCIAL_AUTH_FACEBOOK_SECRET = 'b978a64c0fa8e7762bffdfdc8e922641' ##APP Secret
+
 
 
